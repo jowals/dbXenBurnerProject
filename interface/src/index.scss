@@ -41,6 +41,19 @@ $randomNumber: random(4);
     .side-menu-container {
         height: 100%;
     }
+    .language-switcher {
+        font-family: "Karla";
+        padding: 5px 25px;
+        border-radius: 25px;
+        background-color: #030328;
+        color: #F2E9DC;
+        border: 1px solid #19D2D2;
+        margin: 0 5px;
+        text-align: center;
+        option {
+            font-size: 12px;
+        }
+    }
     @include themed() {
         color: t('text');
         background: t('bg');
@@ -63,7 +76,6 @@ $randomNumber: random(4);
         .main-container {
             margin-top: 0;
             display: flex;
-            // height: 80vh;
             overflow-y: auto;
             .floating-btn {
                 position: fixed;
@@ -137,6 +149,12 @@ $randomNumber: random(4);
     }
     .initial-page {
         height: 100%;
+        position: relative;
+        .language-switcher {
+            position: absolute;
+            right: 75px;
+            top: 20px;
+        }
         .row {
             height: 100%;
             overflow: hidden;
@@ -218,6 +236,7 @@ $randomNumber: random(4);
             // .main-container {
             //     overflow-y: inherit;
             // }
+            
         }
     }
     .initial-page.contracts {
@@ -238,7 +257,8 @@ $randomNumber: random(4);
     }
 }
 
-.chain-popper {
+.chain-popper,
+.language-popper {
     z-index: 1203;
     width: 250px;
     padding: 15px;
@@ -259,6 +279,31 @@ $randomNumber: random(4);
         img {
             max-width: 25px;
             margin-right: 10px;
+        }
+    }
+    .ethpow,
+    .okx,
+    .dc {
+        border-radius: 50%;
+    }
+    .img-container.eth {
+        width: 25px;
+        margin-right: 10px;
+        .eth {
+            max-height: 25px;
+            margin-right: 0;
+        }
+    }
+}
+
+.language-popper {
+    width: 150px;
+    button {
+        justify-content: center;
+        border-bottom: 1px solid #19D2D2;
+        border-radius: 0%;
+        &:last-child {
+            border-bottom: 0;
         }
     }
 }
@@ -569,6 +614,14 @@ $randomNumber: random(4);
                             }
                         }
                     }
+                    .language-switcher {
+                        position: absolute;
+                        top: 0;
+                        right: 0;
+                        font-size: 2vh;
+                        width: 25%;
+                        padding: 5px;
+                    }
                 }
                 .initial-page.contracts {
                     .img-container {
@@ -634,6 +687,9 @@ $randomNumber: random(4);
 @media only screen and (min-width: 900px) {
     .theme {
         zoom: .8;
+    }
+    .cards-grid {
+        height: 75vh;
     }
 }
 

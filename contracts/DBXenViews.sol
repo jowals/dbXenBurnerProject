@@ -107,11 +107,11 @@ contract DBXenViews {
                 feePerStake;
         } else {
             currentCycleFeesPerStakeSummed = dbxen.cycleFeesPerStakeSummed(
-                dbxen.previousStartedCycle()
+                lastStartedCycleTemp + 1
             );
         }
 
-        uint256 currentRewards = getUnclaimedRewards(account);
+        uint256 currentRewards = getUnclaimedRewards(account) + dbxen.accWithdrawableStake(account);
 
         if (
             calculatedCycle > lastStartedCycleTemp &&
