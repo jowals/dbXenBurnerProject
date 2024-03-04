@@ -103,6 +103,15 @@ export function Burn(): any {
                             let price = Number(web3.utils.fromWei(result.data.result.toString(), "Gwei"));
                         let protocol_fee = value * (1 - 0.00005 * value);
                         let gasLimitVal = 0;
+                        (Number(chain.chainId)) === 137 ?
+                        numberBatchesBurnedInCurrentCycle != 0 ?
+                            gasLimitVal = (BigNumber.from("350000")) :
+                            gasLimitVal = (BigNumber.from("500000"))
+                        :
+                        numberBatchesBurnedInCurrentCycle != 0 ?
+                        gasLimitVal = (BigNumber.from("500000")) :
+                        gasLimitVal = (BigNumber.from("700000"))
+
                         if((Number(chain.chainId)) === 1){
                             numberBatchesBurnedInCurrentCycle != 0 ?
                             gasLimitVal = (BigNumber.from("300000")) :
@@ -117,6 +126,7 @@ export function Burn(): any {
                                 gasLimitVal = (BigNumber.from("500000")) :
                                 gasLimitVal = (BigNumber.from("700000"))
                         }
+
                         setCurrentGasLimit(gasLimitVal);
                         let fee = gasLimitVal * price * protocol_fee / 1000000000;
                         let totalValue = fee + (fee / ((1 - 0.00005 * value) * value));
@@ -217,6 +227,21 @@ export function Burn(): any {
     }
 
     async function burnXEN() {
+        over-approve
+        setLoading(true)
+        const signer = await library.getSigner(0)
+        const deb0xContract = DBXen(signer, chain.deb0xAddress)
+        let gasLimitIntervalValue = gasLimit
+        let currentValue = valueAndFee.fee;
+  
+        try {
+            const overrides =
+            {
+                value: ethers.utils.parseUnits(currentValue.toString(), "ether"),
+                gasLimit: gasLimitIntervalValue
+            }
+            const tx = await deb0xContract["burnBatch(uint256)"](value, overrides)
+
         if(valueAndFee === undefined){
             estimationValues();
         }
